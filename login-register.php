@@ -14,17 +14,17 @@
     <div class="container5">
       <div class="forms-container">
         <div class="signin-signup">
-          <form action="#" class="sign-in-form">
+          <form action="./login-qry.php" method="post" class="sign-in-form">
             <h2 class="title">Sign in</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Username" />
+              <input type="email" placeholder="Enter Email"  name="email"/>
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <input type="password" placeholder="Password" name="password" />
             </div>
-            <input type="submit" value="Login" class="btn solid" />
+            <input type="submit"  name="login" value="Login" class="btn solid" />
             <p class="social-text">Or Sign in with social platforms</p>
             <div class="social-media">
               <a href="#" class="social-icon">
