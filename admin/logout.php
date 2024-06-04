@@ -5,4 +5,4 @@ $_SESSION = [];
 
 session_destroy();
 
-header('location: auth-login.php');
+header('location: index.php');

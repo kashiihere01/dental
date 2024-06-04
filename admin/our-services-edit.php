@@ -1,5 +1,5 @@
 <?php
- include_once("./auth.php");
+include_once("./auth.php");
 
 require_once("./db-con.php");
 
@@ -9,7 +9,7 @@ $select = "SELECT * FROM services WHERE id='$get_service_id'";
 $result = mysqli_query($con, $select);
 
 if (mysqli_num_rows($result) > 0) {
-  $row = mysqli_fetch_assoc($result);
+    $service = mysqli_fetch_assoc($result);
 }
 
 ?>
@@ -86,7 +86,7 @@ if (mysqli_num_rows($result) > 0) {
                             <div class="col-lg-6 mb-2">
                                 <label class="form-label" for="name" style="color: blue;"> Service <span class="text-danger">*</span>
                                 </label>
-                                <input type="text" class="form-control" value="<?= $row['service'] ?>" id="name" name="service" placeholder="Enter here..." required>
+                                <input type="text" class="form-control" value="<?= $service['service'] ?>" id="name" name="service" placeholder="Enter here..." required>
                             </div>
                             <input type="hidden" name="id" value="<?= $get_service_id ?>">
 
@@ -94,7 +94,7 @@ if (mysqli_num_rows($result) > 0) {
                                 <label class="form-label" for="image" style="color: blue;">Image <span class="text-danger">*</span>
                                 </label>
                                 <input type="file" class="form-control" id="userimage" name="new_image" accept="image/*">
-                <input type="hidden" class="form-control" value="<?= $row['image'] ?>" name="old_image" accept="image/*" required>
+                                <input type="hidden" class="form-control" value="<?= $service['image'] ?>" name="old_image" accept="image/*" required>
                             </div>
 
 
@@ -111,10 +111,10 @@ if (mysqli_num_rows($result) > 0) {
                     </div>
                 </div>
             </div>
-<!-- table start -->
+            <!-- table start -->
 
-<!-- main end -->
-</div>
+            <!-- main end -->
+        </div>
         <!-- setting sidebar  content -->
         <?php include_once("./includes/setting_sidebar.php") ?>
     </div>

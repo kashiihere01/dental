@@ -18,12 +18,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // save info into db
         $name = $data['result'];
 
-        $avaible_days = ['monady','tuesday','wednesday'];
+        // $avaible_days = ['monady','tuesday','wednesday'];
 
         // echo $name;
         // exit;
 
-        $query = "INSERT INTO `doctors`(`doctor_name`, `speciality`, `start_time`, `end_time`,  `working_days`, `checkup_average_time`,  `doctor_image`, `description`) 
+        $query = "INSERT INTO `doctors`(`doctor_name`, `speciality`, `start_time`, `end_time`, `checkup_average_time`,  `doctor_image`, `description`) 
             VALUES ('$_POST[docname]','$_POST[speciality]' ,'$_POST[stime]','$_POST[etime]','$_POST[acheck_up]','$name','$_POST[description]') ";
 
         if (mysqli_query($con, $query)) {

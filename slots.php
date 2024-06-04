@@ -72,9 +72,8 @@
                 <div class="row py-3">
                     <div class="col-12 text-center">
                         <h1 class="display-3 text-white animated zoomIn"><?= $doc_row['doctor_name'] ?></h1>
-                        <a href="./index.php" class="h4 text-white">Home</a>
-                        <i class="far fa-circle text-white px-2"></i>
-                        <a href="./appointment.php" class="h4 text-white">Appointment</a>
+
+                        <p class="text-center text-ehite"><?= $doc_row['speciality'] ?></p>
                     </div>
                 </div>
             </div>
@@ -102,6 +101,8 @@
                 <?php
 
                 require_once("./includes/db-con.php");
+                $dt = date_create($date);
+                $formatted_date = date_format($dt, "Y-m-d");
 
                 $get_users = "SELECT 
                 slots.*, 
@@ -113,10 +114,12 @@
             ON 
                 slots.id = appointment.slot
             AND 
-                appointment.date = '$date'
+                appointment.date = '$formatted_date'
             WHERE 
                 slots.doctor_id = '$doc_id'
              ";
+
+            
 
                 $result = mysqli_query($con, $get_users);
 
@@ -130,7 +133,7 @@
 
                             <td><?= $row['slot_start_time'] ?></td>
                             <td><?= $row['slot_end_time'] ?></td>
-                            <td><?php if($row['status'] == 'booked') {
+                            <td><?php if ($row['status'] == 'booked') {
                                     echo "<span class='badge bg-success'> Booked</span>";
                                 } else {
                                     echo "<button class='btn btn-primary'>Appointment</button>";

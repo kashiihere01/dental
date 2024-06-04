@@ -16,6 +16,7 @@ if (!isset($_SESSION['login'])  || $_SESSION['login'] == false) {
     $_SESSION['user_email'] = $row['user_email'];
     $_SESSION['user_mobile'] = $row['user_mobile'];
     $_SESSION['user_description'] = $row['description'];
+    $_SESSION['user_about'] = $row['about'];
     $_SESSION['user_role'] = $row['role'];
 
 }

@@ -74,7 +74,7 @@ if (mysqli_num_rows($result) > 0) {
                 <div class="text-center">
                   <div class="author-box-description">
                     <p>
-                      <?= $_SESSION['user_description'] ?>
+                      <?= $_SESSION['about'] ?>
                     </p>
                   </div>
                   
@@ -155,9 +155,7 @@ if (mysqli_num_rows($result) > 0) {
                         <p class="text-muted">  <?= $_SESSION['user_city'] ?></p>
                       </div>
                     </div>
-                    <p class="m-t-30">
-                    <?= $_SESSION['user_about'] ?>
-                    </p>
+                 
                   </div>
                   <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="profile-tab2">
                     <form method="post" action="./profile-update-qry.php" enctype="multipart/form-data" class="needs-validation">
@@ -169,14 +167,14 @@ if (mysqli_num_rows($result) > 0) {
                          
                           <div class="form-group col-md-6 col-12">
                             <label>First Name</label>
-                            <input type="text" class="form-control" name="username" value="<?= $row['user_name'] ?>">
+                            <input type="text" class="form-control" name="username" value="<?= $_SESSION['user_name'] ?>">
                             <div class="invalid-feedback">
                               Please fill in the first name
                             </div>
                           </div>
                           <div class="form-group col-md-6 col-12">
                             <label>City</label>
-                            <input type="text" class="form-control" name="city" value="<?= $row['user_city'] ?>">
+                            <input type="text" class="form-control" name="city" value="<?= $_SESSION['user_city'] ?>">
                             <div class="invalid-feedback">
                               Please fill in the last name
                             </div>
@@ -186,7 +184,7 @@ if (mysqli_num_rows($result) > 0) {
                         <div class="row">
                           <div class="form-group col-md-4 col-12">
                             <label>Email</label>
-                            <input type="email" class="form-control" name="email" value="<?= $row['user_email'] ?>">
+                            <input type="email" class="form-control" name="email" value="<?= $_SESSION['user_email'] ?>">
                             <div class="invalid-feedback">
                               Please fill in the email
                             </div>
@@ -194,18 +192,18 @@ if (mysqli_num_rows($result) > 0) {
                           <div class="form-group col-md-4 col-12">
                             <label>Image</label>
                             <input type="file" class="form-control" id="userimage" name="new_image" accept="image/*">
-                <input type="hidden" class="form-control" value="<?= $row['user_image'] ?>" name="old_image" accept="image/*" required>
+                <input type="hidden" class="form-control" value="<?=$_SESSION['user_image'] ?>" name="old_image" accept="image/*" required>
                           </div>
                           
                           <div class="form-group col-md-4 col-12">
                             <label>Phone</label>
-                            <input type="tel" class="form-control" name="mobile" value="<?= $row['user_mobile'] ?>">
+                            <input type="tel" class="form-control" name="mobile" value="<?= $_SESSION['user_mobile'] ?>">
                           </div>
                         </div>
                         <div class="row">
                           <div class="form-group col-12">
                             <label>Bio</label>
-                            <textarea class="form-control summernote-simple" name="description"><?= $row['description'];  ?></textarea>
+                            <textarea class="form-control summernote-simple" name="description"><?= $_SESSION['user_description'];  ?></textarea>
                           </div>
                         
                         </div>

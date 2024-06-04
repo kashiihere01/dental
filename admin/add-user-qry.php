@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $password = $_POST['password'];
 
-        $query = "INSERT INTO `users`(`user_name`, `user_email`, `user_city`, `user_about`, `password`, `user_mobile`, `description`, `user_image`) 
+        $query = "INSERT INTO `users`(`user_name`, `user_email`, `user_city`, `about`, `password`, `user_mobile`, `description`, `user_image`) 
             VALUES ('$_POST[username]','$_POST[user_city]','$_POST[user_about]','$_POST[email]' ,'$password','$_POST[mobile]' ,'$_POST[descrption]', '$imgName')";
 
         if (mysqli_query($con , $query)) {

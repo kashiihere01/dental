@@ -46,32 +46,3 @@ function getImageUrl($folder, $image)
 }
 // get doctors by id
 
-function getDoctorById($con, $id)
-{
-    $sql = "SELECT * FROM doctors WHERE id = $id";
-    $result = mysqli_query($con, $sql);
-    $categroy = mysqli_fetch_assoc($result);
-    return $categroy;
-}
-// slots
-function getSlots($con, $category = null, $id = null)
-{
-
-    $sql = "SELECT * FROM slots ";
-
-    if ($category != null) {
-        $sql .= "WHERE doctors = '$category' ";
-    }
-
-    if ($id != null && $category != null) {
-        $sql .= "AND id = '$id' ";
-    } else if ($id != null && $category == null) {
-        $sql .= "WHERE id = '$id' ";
-    }
-
-    $result = mysqli_query($con, $sql);
-
-    
-
-    return $result;
-}
