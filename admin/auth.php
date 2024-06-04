@@ -11,7 +11,7 @@ if (!isset($_SESSION['login'])  || $_SESSION['login'] == false) {
     $row = mysqli_fetch_assoc($result);
     $_SESSION['user_image'] = $row['user_image'];
     $_SESSION['user_city'] = $row['user_city'];
-    $_SESSION['user_about'] = $row['user_about'];
+    $_SESSION['user_about'] = $row['about'];
     $_SESSION['user_name'] = $row['user_name'];
     $_SESSION['user_email'] = $row['user_email'];
     $_SESSION['user_mobile'] = $row['user_mobile'];
