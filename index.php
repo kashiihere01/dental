@@ -203,7 +203,7 @@
 
                                             <option value="<?= $row['id'] ?>"><?= $row['doctor_name'] ?> (<?= $row['speciality'] ?>)</option>
                                         <?php }
-                                        // mysqli_data_seek($doctor, 0);
+                                        mysqli_data_seek($doctor, 0);
                                         ?>
                                     </select>
                                 </div>
@@ -376,8 +376,8 @@
                            </div>
                        </div>
                        <div class="team-text position-relative bg-light text-center rounded-bottom p-4 pt-5">
-                           <h4 class="mb-2"><?= $row['doctor_name']?></h4>
-                           <p class="text-primary mb-0"><?= $row['speciality']?></p>
+                           <h4 class="mb-2"><?= $doc_row['doctor_name']?></h4>
+                           <p class="text-primary mb-0"><?= $doc_row['speciality']?></p>
                        </div>
                    </div>
                </div>
@@ -391,7 +391,8 @@
         </div>
     </div>
     <!-- Team End -->
-
+    </div>
+    </div>
 
     <?php include_once("./includes/footer.php"); ?>
     <!-- Footer End -->

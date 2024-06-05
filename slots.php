@@ -1,3 +1,7 @@
+<?php
+
+include_once("./auth.php")
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -78,7 +82,9 @@
                 </div>
             </div>
             <!-- Hero End -->
-
+            <p class="text-center">
+                <?php echo ("$date"); ?>
+            </p>
     <?php
         }
     }
@@ -93,6 +99,7 @@
 
                     <th scope="col">start</th>
                     <th scope="col">End time</th>
+
                     <th scope="col">Availability</th>
 
                 </tr>
@@ -104,9 +111,9 @@
                 $dt = date_create($date);
                 $formatted_date = date_format($dt, "Y-m-d");
 
-                $get_users = "SELECT 
+                $get_appointment = "SELECT 
                 slots.*, 
-                appointment.*
+                appointment.status
             FROM 
                 slots
             LEFT JOIN 
@@ -119,9 +126,10 @@
                 slots.doctor_id = '$doc_id'
              ";
 
-            
 
-                $result = mysqli_query($con, $get_users);
+
+
+                $result = mysqli_query($con, $get_appointment);
 
                 if (mysqli_num_rows($result) > 0) {
 
@@ -133,16 +141,14 @@
 
                             <td><?= $row['slot_start_time'] ?></td>
                             <td><?= $row['slot_end_time'] ?></td>
+
                             <td><?php if ($row['status'] == 'booked') {
                                     echo "<span class='badge bg-success'> Booked</span>";
                                 } else {
-                                    echo "<button class='btn btn-primary'>Appointment</button>";
+                                    echo "<button class='btn btn-primary openModalApp' data-slot_id='" . $row['id'] . "'>Appointment</button>";
                                 }
-
                                 ?></td>
                         </tr>
-
-
                 <?php
                     }
                 }
@@ -152,6 +158,35 @@
         </table>
     </div>
     <!-- Appointment End -->
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="./appointment-qry.php" method="post">
+                        <h6 class="modal-title" id="exampleModalLabel">Do You want make an Appointment?</h6>
+                        <input type="hidden" name="slot_id" id="slotID" value="" />
+                        <input type="hidden" value="<?=$doc_id?>" name="doc_id">
+                        <input type="hidden" value="<?=$formatted_date?>" name="select_date">
+                        <input type="hidden" value="<?=$_SESSION['user_id']?>" name="patient_id">
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" name="appointment" value="appointment">Make Appointment</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 
     <?php include_once("./includes/footer.php"); ?>
@@ -165,6 +200,21 @@
 
     <!-- JavaScript Libraries -->
     <?php include_once("./includes/java-script-links.php"); ?>
+    <script>
+        const modalBtn = document.querySelectorAll('.openModalApp');
+        const slotIdInput = document.querySelector('#slotID');
+        const myModal = new bootstrap.Modal('#exampleModal', {
+            keyboard: false
+        });
+
+        modalBtn.forEach((btn) => {
+            btn.addEventListener('click', (e) => {
+                const slotId = e.target.dataset.slot_id;
+                slotIdInput.setAttribute("value", slotId);
+                myModal.show();
+            })
+        })
+    </script>
 </body>
 
 </html>
