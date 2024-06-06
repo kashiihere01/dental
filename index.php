@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +10,7 @@
     <meta content="Free HTML Templates" name="description">
 
     <!-- css link -->
-    <?php include_once("./includes/css-links.php") ?>
+    <?php include_once ("./includes/css-links.php") ?>
 </head>
 
 <body>
@@ -109,7 +110,7 @@
                             <h6 class="text-white mb-0">Sunday</h6>
                             <p class="mb-0"> 8:00am - 5:00pm</p>
                         </div>
-                        <a class="btn btn-light" href="">Appointment</a>
+                        <a class="btn btn-light" href="./appointment.php">Appointment</a>
                     </div>
                 </div>
                 <div class="col-lg-4 wow zoomIn" data-wow-delay="0.3s">
@@ -127,7 +128,7 @@
                             mysqli_data_seek($service, 0);
                             ?>
                         </select>
-                        <a class="btn btn-light" href="">Search Doctor</a>
+                        <a class="btn btn-light" href="./team.php">Search Doctor</a>
                     </div>
                 </div>
                 <div class="col-lg-4 wow zoomIn" data-wow-delay="0.6s">

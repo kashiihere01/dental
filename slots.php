@@ -175,8 +175,8 @@ include_once("./auth.php")
                         <input type="hidden" name="slot_id" id="slotID" value="" />
                         <input type="hidden" value="<?=$doc_id?>" name="doc_id">
                         <input type="hidden" value="<?=$formatted_date?>" name="select_date">
-                        <input type="hidden" value="<?=$_SESSION['user_id']?>" name="patient_id">
-
+                   
+                        
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary" name="appointment" value="appointment">Make Appointment</button>

@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 require_once("db-con.php");
 require_once("helpers.php");
 ?>
