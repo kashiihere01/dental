@@ -58,8 +58,8 @@ require_once("./db-con.php");
 
 $get_appointment = "SELECT 
     patients.name, 
-    slots.*,
-    appointments.*
+    slots  .*,
+    appointments .*
 FROM
     slots
 LEFT JOIN 

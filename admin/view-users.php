@@ -47,6 +47,7 @@
                            
                             <th>Mobile</th>
                       
+                            <th>Status</th>
                             <th>Action</th>
                           </tr>
                         </thead>
@@ -74,14 +75,24 @@ if (mysqli_num_rows($result) > 0) {
        
             <td><?= $row['user_mobile'] ?></td>
             
-          
+            <td>
+                        <?php if($row['status'] == 'active'){
+                        echo "<span class='badge bg-success text-white'>Active</span>";
+                    }
+                    else if($row['status'] == 'inactive'){
+                        echo "<span class='badge bg-warning text-white'>Inactive</span>";
+                    }
+                    else{
+                        echo "<span class='badge bg-danger text-white'>removed</span>";
+                    }
+                     ?></td>
            
             <td>
                 <div class="dropdown">
                     <button type="button" class="btn btn-success text-white dropdown-toggle" data-toggle="dropdown">Actions</button>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="doctor-edit.php?id=<?= $row['id'] ?>">        <i class="fas fa-user-edit"></i> Edit</a>
-                        <a class="dropdown-item" id="#del" data-id="<?= $row['id']?>"><i class="fas fa-trash"></i> Delete</a>
+                        <a class="dropdown-item" href="delete-users.php?id=<?= $row['id'] ?>">><i class="fas fa-trash"></i> Delete</a>
                         <a class="dropdown-item" href="active.php?id=<?= $row['id'] ?>">  <i data-feather="user-check"></i> Active</a>
                         <a class="dropdown-item" href="inactive.php?id=<?= $row['id'] ?>"><i data-feather="user-x"></i>  Inactive</a>
                       

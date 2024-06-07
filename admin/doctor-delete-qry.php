@@ -13,6 +13,6 @@ if (mysqli_query($con, $category_delete_qry)) {
     if (mysqli_query($con, $product_delete_qry)) {
         session_start();
         $_SESSION['success'] = "Operation Performed Successfully...!";
-        header("Location:soctors.php");
+        header("Location:inbox.php");
     }
 }

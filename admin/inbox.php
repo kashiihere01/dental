@@ -38,7 +38,12 @@ include_once("./auth.php");
           <div class="card-body text-dark">
             <div class="table-responsive">
               <table class="table table-striped" id="table-1">
-
+<thead>
+  <th>Name</th>
+  <th>message</th>
+  <th>Date</th>
+  <th>Delete Message</th>
+</thead>
                 <tbody>
                   <?php
 
@@ -49,7 +54,7 @@ include_once("./auth.php");
                   $result = mysqli_query($con, $get_doctors);
 
                   if (mysqli_num_rows($result) > 0) {
- echo "IN condition" ;
+
 
                     while ($row = mysqli_fetch_assoc($result)) {
 
@@ -57,13 +62,7 @@ include_once("./auth.php");
                   ?>
 
                       <tr class="unread">
-                        <td class="tbl-checkbox">
-                          <label class="form-check-label">
-                            <input type="checkbox">
-                            <span class="form-check-sign"></span>
-                          </label>
-                        </td>
-
+                     
                         <td class="hidden-xs"><?= $row['name'] ?></td>
                         <td class="max-texts">
                           <a href="read.php?id=<?= $row['id'] ?>"><?= $row['message'] ?></a>
@@ -71,7 +70,7 @@ include_once("./auth.php");
 
                         <td class="text-right"> <?= $row['created_at'] ?> </td>
                         <td class="hidden-xs">
-                          <a href=""> <i class="fas fa-trash text-dark"></i></a>
+                          <a href="./delete-messages.php"> <i class="fas fa-trash text-dark"></i></a>
                         </td>
                       </tr>
 

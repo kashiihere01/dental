@@ -80,7 +80,7 @@ if (mysqli_num_rows($result) > 0) {
                     <button type="button" class="btn btn-success text-white dropdown-toggle" data-toggle="dropdown">Actions</button>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="doctor-edit.php?id=<?= $row['id'] ?>">        <i class="fas fa-user-edit"></i> Edit</a>
-                        <a class="dropdown-item" href="delete.php?id=<?= $row['id'] ?>"><i class="fas fa-trash"></i> Delete</a>
+                        <a class="dropdown-item" href="doctor-delete-qry.php?id=<?= $row['id']?>"><i class="fas fa-trash"></i> Delete</a>
                       
                     </div>
                 </div>

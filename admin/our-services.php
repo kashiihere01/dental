@@ -150,7 +150,7 @@ while ($row = mysqli_fetch_assoc($result)) {
               <button type="button" class="btn btn-success text-white dropdown-toggle" data-toggle="dropdown">Actions</button>
               <div class="dropdown-menu">
                   <a class="dropdown-item" href="our-services-edit.php?id=<?= $row['id'] ?>">        <i class="fas fa-user-edit"></i> Edit</a>
-                  <a class="dropdown-item" href="delete.php?id=<?= $row['id'] ?>"><i class="fas fa-trash"></i> Delete</a>
+                  <a class="dropdown-item" href="service-delete.php?id=<?= $row['id'] ?>"><i class="fas fa-trash"></i> Delete</a>
                 
               </div>
           </div>
