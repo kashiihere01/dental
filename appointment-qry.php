@@ -25,10 +25,12 @@ $slot_id =$_POST['slot_id'];
 //              echo "$query";
 //  exit;
 //echo("successfully submit");
-            // $_SESSION['success'] = "Operation Perfomed Successfully...!";
-             header("Location:index.php");
+$_SESSION['success'] = "Operation perform Successfully...!";
+header("Location:index.php");
+exit;
+
         } else {
             $_SESSION['error'] = "Something went wrong...!";
-            header("Location:slots.php");
+            header("Location:index.php");
         }
     }

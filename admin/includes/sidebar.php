@@ -33,7 +33,9 @@
        
             ';
           } ?>
-
+ <li class="dropdown">
+              <a href="appointments.php" class="nav-link"><i class="fas  fa-calendar-check"></i><span>Apointments</span></a>
+            </li>
             <li class="dropdown">
               <a href="our-services.php" class="nav-link"><i class="fas fa-layer-group"></i><span>Our Services</span></a>
             </li>

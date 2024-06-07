@@ -91,34 +91,40 @@
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-6 wow slideInUp" data-wow-delay="0.3s">
-                    <?php
+                <?php
 
-                    if (!empty($_SESSION['success'])) {
-                        $msg = $_SESSION['success'];
-                        echo " <div class='alert alert-success alert-dismissible fade show credErr'>
-        <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span>
-        </button> <strong>Congratulation! </strong> $msg</div>";
-                    }
-                    unset($_SESSION['success']);
+if (!empty($_SESSION['success'])) {
+    $msg = $_SESSION['success'];
+    echo  " 
+    <div class='alert alert-success alert-dismissible fade show' role='alert'>
+  <strong>Congratulation!</strong> $msg
+  <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+</div>";
+}
+unset($_SESSION['success']);
 
 
-                    if (!empty($_SESSION['error'])) {
-                        $msg = $_SESSION['error'];
-                        echo " <div class='alert alert-danger alert-dismissible fade show credErr'>
-        <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span>
-        </button> <strong>Warning! </strong> $msg</div>";
-                    }
-                    unset($_SESSION['error']);
+if (!empty($_SESSION['error'])) {
+    $msg = $_SESSION['error'];
+    echo " 
+    <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+  <strong>Warning!</strong> $msg
+  <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+</div>"
+ ;
+}
+unset($_SESSION['error']);
 
-                    if (!empty($_SESSION['imgErr'])) {
-                        $msg = $_SESSION['imgErr'];
-                        echo " <div class='alert alert-danger alert-dismissible fade show credErr'>
-        <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span>
-        </button> <strong>Warning! </strong> $msg</div>";
-                    }
-                    unset($_SESSION['imgErr']);
+if (!empty($_SESSION['imgErr'])) {
+    $msg = $_SESSION['imgErr'];
+    echo "   <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+  <strong>Warning!</strong> $msg
+  <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+</div>";
+}
+unset($_SESSION['imgErr']);
 
-                    ?>
+?>
 
                     <form action="./message-qry.php" method="POST">
                         <div class="row g-3">

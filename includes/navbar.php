@@ -75,7 +75,7 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
 ;
 } else {
     echo '  
-    <a href="login-register.php" class="btn btn-primary py-2 px-4 ms-3"><i class"fa fa-sign-out"></i>Login</a>          
+    <a href="login.php" class="btn btn-primary py-2 px-4 ms-3"><i class"fa fa-sign-out"></i>Login</a>          
 ';
 }
 

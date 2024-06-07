@@ -14,7 +14,7 @@ if (isset($_POST['login'])) {
 
     if ($email == "" || $password == "") {
         $_SESSION['error'] = "All feilds are requireds...!";
-        header("Location:login-register.php");
+        header("Location:login.php");
         exit;
     }
 
@@ -23,8 +23,8 @@ if (isset($_POST['login'])) {
     $exists = mysqli_query($con, $sel_sql);
 
     if (mysqli_num_rows($exists) === 0) {
-        $_SESSION['invalid'] = "Invalid Credentials...!";
-        header("Location:login-register.php");
+        $_SESSION['error'] = "Invalid Credentials...!";
+        header("Location:login.php");
         exit;
     }
 
@@ -36,7 +36,7 @@ if (isset($_POST['login'])) {
     // }
     if ($password != $user['password']) {
         $_SESSION['invalid'] = "Invalid Credentials...!";
-        header("Location:login-register.php");
+        header("Location:login.php");
         exit;
     } else {
         $_SESSION['login'] = true;

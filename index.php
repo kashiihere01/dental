@@ -10,7 +10,7 @@
     <meta content="Free HTML Templates" name="description">
 
     <!-- css link -->
-    <?php include_once ("./includes/css-links.php") ?>
+    <?php include_once("./includes/css-links.php") ?>
 </head>
 
 <body>
@@ -41,7 +41,7 @@
                 </div>
                 <div class="modal-body d-flex align-items-center justify-content-center">
                     <div class="input-group" style="max-width: 600px;">
-                        <input type="text" class="form-control bg-transparent border-primary p-3" placeholder="Type search keyword">
+                        <input type="search" class="form-control bg-transparent border-primary p-3" placeholder="Type search keyword">
                         <button class="btn btn-primary px-4"><i class="bi bi-search"></i></button>
                     </div>
                 </div>
@@ -61,8 +61,8 @@
                         <div class="p-3" style="max-width: 900px;">
                             <h5 class="text-white text-uppercase mb-3 animated slideInDown">Keep Your Teeth Healthy</h5>
                             <h1 class="display-1 text-white mb-md-4 animated zoomIn">Take The Best Quality Dental Treatment</h1>
-                            <a href="appointment.html" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Appointment</a>
-                            <a href="" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Contact Us</a>
+                            <a href="appointment.php" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Appointment</a>
+                            <a href="contact.php" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Contact Us</a>
                         </div>
                     </div>
                 </div>
@@ -72,8 +72,8 @@
                         <div class="p-3" style="max-width: 900px;">
                             <h5 class="text-white text-uppercase mb-3 animated slideInDown">Keep Your Teeth Healthy</h5>
                             <h1 class="display-1 text-white mb-md-4 animated zoomIn">Take The Best Quality Dental Treatment</h1>
-                            <a href="appointment.html" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Appointment</a>
-                            <a href="" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Contact Us</a>
+                            <a href="appointment.php" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Appointment</a>
+                            <a href="contact.php" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Contact Us</a>
                         </div>
                     </div>
                 </div>
@@ -90,7 +90,39 @@
     </div>
     <!-- Carousel End -->
 
+    <?php
 
+    if (!empty($_SESSION['success'])) {
+        $msg = $_SESSION['success'];
+        echo  " 
+    <div class='alert alert-success alert-dismissible fade show' role='alert'>
+  <strong>Congratulation!</strong> $msg
+  <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+</div>";
+    }
+    unset($_SESSION['success']);
+
+
+    if (!empty($_SESSION['error'])) {
+        $msg = $_SESSION['error'];
+        echo " 
+    <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+  <strong>Warning!</strong> $msg
+  <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+</div>";
+    }
+    unset($_SESSION['error']);
+
+    if (!empty($_SESSION['imgErr'])) {
+        $msg = $_SESSION['imgErr'];
+        echo "   <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+  <strong>Warning!</strong> $msg
+  <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+</div>";
+    }
+    unset($_SESSION['imgErr']);
+
+    ?>
     <!-- Banner Start -->
     <div class="container-fluid banner mb-5">
         <div class="container">
@@ -119,18 +151,23 @@
                         <div class="date mb-3" id="date" data-target-input="nearest">
                             <input type="text" class="form-control bg-light border-0 datetimepicker-input" placeholder="Appointment Date" data-target="#date" data-toggle="datetimepicker" style="height: 40px;">
                         </div>
-                        <select class="form-select bg-light border-0 mb-3" style="height: 40px;">
-                            <option selected>Select A Service</option>
-                            <?php while ($row = mysqli_fetch_assoc($service)) { ?>
-
-                                <option><?= $row['service'] ?></option>
-                            <?php }
-                            mysqli_data_seek($service, 0);
-                            ?>
-                        </select>
-                        <a class="btn btn-light" href="./team.php">Search Doctor</a>
+                        <form action="search-qry.php" method="POST">
+                            <div class="input-group mb-2">
+                                <input class="form-control border-end-0 border" type="search" value="search" id="example-search-input">
+                                <span class="input-group-append">
+                                    <button class="btn btn-outline-primary bg-white border-start-0 border rounded-pill ms-n3" type="submit" name="search">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                            <button class="btn btn-light w-100">
+                            Search Doctor
+                            </button>
+                        </form>
                     </div>
+
                 </div>
+                
                 <div class="col-lg-4 wow zoomIn" data-wow-delay="0.6s">
                     <div class="bg-secondary d-flex flex-column p-5" style="height: 300px;">
                         <h3 class="text-white mb-3">Make Appointment</h3>
@@ -353,46 +390,46 @@
             <!-- Testimonial End -->
 
             <div class="container-fluid py-5">
-        <div class="container">
-            <div class="row g-5">
-                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.1s">
-                    <div class="section-title bg-light rounded h-100 p-5">
-                        <h5 class="position-relative d-inline-block text-primary text-uppercase">Our Dentist</h5>
-                        <h1 class="display-6 mb-4">Meet Our Certified & Experienced Dentist</h1>
-                        <a href="appointment.html" class="btn btn-primary py-3 px-5">Appointment</a>
+                <div class="container">
+                    <div class="row g-5">
+                        <div class="col-lg-4 wow slideInUp" data-wow-delay="0.1s">
+                            <div class="section-title bg-light rounded h-100 p-5">
+                                <h5 class="position-relative d-inline-block text-primary text-uppercase">Our Dentist</h5>
+                                <h1 class="display-6 mb-4">Meet Our Certified & Experienced Dentist</h1>
+                                <a href="appointment.html" class="btn btn-primary py-3 px-5">Appointment</a>
+                            </div>
+                        </div>
+                        <?php while ($doc_row = mysqli_fetch_assoc($doctor)) { ?>
+
+
+                            <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
+                                <div class="team-item">
+                                    <div class="position-relative rounded-top" style="z-index: 1;">
+                                        <img class="img-fluid rounded-top w-100" src="./admin/images/doctor/<?php echo $doc_row['doctor_image'] ?>" alt="">
+                                        <div class="position-absolute top-100 start-50 translate-middle bg-light rounded p-2 d-flex">
+                                            <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-twitter fw-normal"></i></a>
+                                            <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
+                                            <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-linkedin-in fw-normal"></i></a>
+                                            <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-instagram fw-normal"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="team-text position-relative bg-light text-center rounded-bottom p-4 pt-5">
+                                        <h4 class="mb-2"><?= $doc_row['doctor_name'] ?></h4>
+                                        <p class="text-primary mb-0"><?= $doc_row['speciality'] ?></p>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php }
+                        mysqli_data_seek($doctor, 0);
+                        ?>
+
+
+
                     </div>
                 </div>
-                <?php while ($doc_row = mysqli_fetch_assoc($doctor)) { ?>
-               
-                       
-               <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
-                   <div class="team-item">
-                       <div class="position-relative rounded-top" style="z-index: 1;">
-                           <img class="img-fluid rounded-top w-100" src="./admin/images/doctor/<?php echo $doc_row['doctor_image']?>" alt="">
-                           <div class="position-absolute top-100 start-50 translate-middle bg-light rounded p-2 d-flex">
-                               <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-twitter fw-normal"></i></a>
-                               <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
-                               <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-linkedin-in fw-normal"></i></a>
-                               <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-instagram fw-normal"></i></a>
-                           </div>
-                       </div>
-                       <div class="team-text position-relative bg-light text-center rounded-bottom p-4 pt-5">
-                           <h4 class="mb-2"><?= $doc_row['doctor_name']?></h4>
-                           <p class="text-primary mb-0"><?= $doc_row['speciality']?></p>
-                       </div>
-                   </div>
-               </div>
-               <?php }
-                          mysqli_data_seek($doctor, 0);
-                          ?>
-               
-
-                
             </div>
+            <!-- Team End -->
         </div>
-    </div>
-    <!-- Team End -->
-    </div>
     </div>
 
     <?php include_once("./includes/footer.php"); ?>
@@ -404,6 +441,19 @@
 
 
     <?php include_once("./includes/java-script-links.php"); ?>
+    <script>
+        $(document).ready(function() {
+            setTimeout(function() {
+                $(".uploadingErr").remove();
+            }, 3000);
+
+
+            setTimeout(function() {
+                $(".credErr").remove();
+            }, 3000);
+
+        })
+    </script>
 </body>
 
 </html>
