@@ -141,11 +141,11 @@ unset($_SESSION['imgErr']);
                     </div>
               </div>
 
-              <div class="col-lg-4 mb-2">
+              <div class="col-lg-6 mb-2">
                 <label class="form-label" for="image" style="color: blue;">Image <span class="text-danger">*</span>
                 </label>
                 <input type="file" class="form-control" id="userimage" name="new_image" accept="image/*">
-                <input type="hidden" class="form-control" value="<?= $doctor['doctor_image'] ?>" name="old_image" accept="image/*" required>                    </div>
+                <input type="hidden" value="<?= $doctor['doctor_image'] ?>" name="old_image"  required>                   
 
               </div>
 

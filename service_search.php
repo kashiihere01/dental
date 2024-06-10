@@ -1,32 +1,29 @@
+
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+
+    <title>Services</title>
+
+    <!-- css links include -->
+    <?php require_once("./includes/css-links.php") ?>
+
+</head>
+
+<body>
+     <!-- header-section include -->
+
+
+<div class="row m-0">
+
 <?php
-
-require_once("db-con.php");
-require_once("helpers.php");
+require_once("./includes/db-con.php");
+require_once("./includes/helpers.php");
 ?>
-
- <!-- Spinner Start -->
- <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-grow text-primary m-1" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
-        <div class="spinner-grow text-dark m-1" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
-        <div class="spinner-grow text-secondary m-1" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
-    </div>
-    <!-- Spinner End -->
-
-
-
- 
-
-
-
-
-    <!-- Topbar Start -->
-    <div class="container-fluid bg-light ps-5 pe-0 d-none d-lg-block">
+<!-- Topbar Start -->
+<div class="container-fluid bg-light ps-5 pe-0 d-none d-lg-block">
         <div class="row gx-0">
             <div class="col-md-6 text-center text-lg-start mb-2 mb-lg-0">
                 <div class="d-inline-flex align-items-center">
@@ -88,19 +85,18 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
 ?>
         </div>
     </nav>
-       <!-- Full Screen Search Start -->
+    <!-- Full Screen Search Start -->
        <div class="modal fade" id="searchModal" tabindex="-1">
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content" style="background: rgba(9, 30, 62, .7);">
-               
+                <form  method="post">
                 <div class="modal-header border-0">
                     <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="service_search.php" method="post">
                 <div class="modal-body d-flex align-items-center justify-content-center">
                     <div class="input-group" style="max-width: 600px;">
-                        <input type="text" class="form-control bg-transparent border-primary p-3" name="search_service" placeholder="Type search keyword" >
-                        <button class="btn btn-primary px-4" type="submit"  name="search_service"><i class="bi bi-search"></i></button>
+                        <input type="search" class="form-control bg-transparent border-primary p-3" name="search_service" placeholder="Type search keyword" >
+                        <button class="btn btn-primary px-4" type="submit"><i class="bi bi-search"></i></button>
                     </div>
                 </div>
                 </form>
@@ -108,3 +104,65 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
         </div>
     </div>
     <!-- Full Screen Search End -->
+ 
+          <!-- Hero Start -->
+    <div class="container-fluid bg-primary py-5 hero-header mb-5">
+        <div class="row py-3">
+            <div class="col-12 text-center">
+                <h1 class="display-3 text-white animated zoomIn">Services</h1>
+                <a href="./index.php" class="h4 text-white">Home</a>
+                <i class="far fa-circle text-white px-2"></i>
+                <a href="./service.php" class="h4 text-white">Services</a>
+            </div>
+        </div>
+    </div>
+    <!-- Hero End -->         
+
+<?php
+
+// Sanitize search term
+$search_word = mysqli_real_escape_string( $con, $_POST['search_service']);
+
+// Construct the query
+$search_qry = "SELECT * FROM services 
+
+WHERE services.service LIKE '%$search_word%'";
+
+// Execute the search query
+$result = mysqli_query($con, $search_qry);
+
+// Check for errors
+if (!$result) {
+    die("Query failed: " . mysqli_error($con));
+}
+    // get products
+    $services = getServiceall($con);
+// Process the result, for example, fetch the rows
+while ($row = mysqli_fetch_assoc($result)) {
+
+
+?>
+     
+                       
+                    
+                        <div class="col-md-4 service-item wow zoomIn" data-wow-delay="0.6s">
+                            <div class="rounded-top overflow-hidden">
+                                <img class="img-fluid" src="./admin/images//services/<?php echo $row['image'] ?>" alt="">
+                            </div>
+                            <div class="position-relative bg-light rounded-bottom text-center p-4">
+                                <h5 class="m-0"><?= $row['service']?></h5>
+                            </div>
+                        </div>
+                        <?php }
+                         
+                           ?>
+                       
+                    </div>
+
+
+
+<!-- footer includes -->
+    <?php require_once("./includes/footer.php")  ?>
+
+<?php require_once("./includes/java-script-links.php") ?>
+</body>

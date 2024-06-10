@@ -17,7 +17,40 @@
 
     <!-- Topbar End -->
 
+    <?php
 
+if (!empty($_SESSION['success'])) {
+    $msg = $_SESSION['success'];
+    echo  " 
+    <div class='alert alert-success alert-dismissible fade show credErr' role='alert'>
+  <strong>Congratulation!</strong> $msg
+  <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+</div>";
+}
+unset($_SESSION['success']);
+
+
+if (!empty($_SESSION['error'])) {
+    $msg = $_SESSION['error'];
+    echo " 
+    <div class='alert alert-danger alert-dismissible fade  show credErr'  role='alert'>
+  <strong>Warning!</strong> $msg
+  <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+</div>"
+ ;
+}
+unset($_SESSION['error']);
+
+if (!empty($_SESSION['imgErr'])) {
+    $msg = $_SESSION['imgErr'];
+    echo "   <div class='alert alert-danger alert-dismissible fade show  credErr' role='alert'>
+  <strong>Warning!</strong> $msg
+  <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+</div>";
+}
+unset($_SESSION['imgErr']);
+
+?>
     <!-- Navbar Start -->
     <?php include_once("./includes/navbar.php") ?>
     <!-- Navbar End -->
@@ -32,28 +65,12 @@
 
     ?>
 
-    <!-- Full Screen Search Start -->
-    <div class="modal fade" id="searchModal top" tabindex="-1">
-        <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content" style="background: rgba(9, 30, 62, .7);">
-                <div class="modal-header border-0">
-                    <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body d-flex align-items-center justify-content-center">
-                    <div class="input-group" style="max-width: 600px;">
-                        <input type="search" class="form-control bg-transparent border-primary p-3" placeholder="Type search keyword">
-                        <button class="btn btn-primary px-4"><i class="bi bi-search"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Full Screen Search End -->
+   
 
 
     <!-- Carousel Start -->
     <div class="container-fluid p-0">
-        <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div id="header-carousel top" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img class="w-100" src="img/carousel-1.jpg" alt="Image">
@@ -90,39 +107,7 @@
     </div>
     <!-- Carousel End -->
 
-    <?php
 
-    if (!empty($_SESSION['success'])) {
-        $msg = $_SESSION['success'];
-        echo  " 
-    <div class='alert alert-success alert-dismissible fade show' role='alert'>
-  <strong>Congratulation!</strong> $msg
-  <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-</div>";
-    }
-    unset($_SESSION['success']);
-
-
-    if (!empty($_SESSION['error'])) {
-        $msg = $_SESSION['error'];
-        echo " 
-    <div class='alert alert-danger alert-dismissible fade show' role='alert'>
-  <strong>Warning!</strong> $msg
-  <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-</div>";
-    }
-    unset($_SESSION['error']);
-
-    if (!empty($_SESSION['imgErr'])) {
-        $msg = $_SESSION['imgErr'];
-        echo "   <div class='alert alert-danger alert-dismissible fade show' role='alert'>
-  <strong>Warning!</strong> $msg
-  <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-</div>";
-    }
-    unset($_SESSION['imgErr']);
-
-    ?>
     <!-- Banner Start -->
     <div class="container-fluid banner mb-5">
         <div class="container">
@@ -153,14 +138,14 @@
                         </div>
                         <form action="search-qry.php" method="POST">
                             <div class="input-group mb-2">
-                                <input class="form-control border-end-0 border" type="search" value="search" id="example-search-input">
+                                <input class="form-control border-end-0 border bg-light" type="search" value="search" id="example-search-input" name="search">
                                 <span class="input-group-append">
-                                    <button class="btn btn-outline-primary bg-white border-start-0 border rounded-pill ms-n3" type="submit" name="search">
+                                    <button class="btn btn-outline-primary bg-light border-start-0 border rounded-pill ms-n3" type="submit" name="search">
                                         <i class="fa fa-search"></i>
                                     </button>
                                 </span>
                             </div>
-                            <button class="btn btn-light w-100">
+                            <button class="btn btn-light w-100" type="submit">
                             Search Doctor
                             </button>
                         </form>
@@ -187,6 +172,7 @@
             <div class="row g-5">
                 <div class="col-lg-7">
                     <div class="section-title mb-4">
+
                         <h5 class="position-relative d-inline-block text-primary text-uppercase">About Us</h5>
                         <h1 class="display-5 mb-0">The World's Best Dental Clinic That You Can Trust</h1>
                     </div>
@@ -202,7 +188,7 @@
                             <h5 class="mb-3"><i class="fa fa-check-circle text-primary me-3"></i>Fair Prices</h5>
                         </div>
                     </div>
-                    <a href="appointment.html" class="btn btn-primary py-3 px-5 mt-4 wow zoomIn" data-wow-delay="0.6s">Make Appointment</a>
+                    <a href="appointment.php" class="btn btn-primary py-3 px-5 mt-4 wow zoomIn" data-wow-delay="0.6s">Make Appointment</a>
                 </div>
                 <div class="col-lg-5" style="min-height: 500px;">
                     <div class="position-relative h-100">
@@ -308,7 +294,7 @@
                             <div class="offer-text text-center rounded p-5">
                                 <h1 class="display-5 text-white">Save 30% On Your First Dental Checkup</h1>
                                 <p class="text-white mb-4">Eirmod sed tempor lorem ut dolores sit kasd ipsum. Dolor ea et dolore et at sea ea at dolor justo ipsum duo rebum sea. Eos vero eos vero ea et dolore eirmod diam duo lorem magna sit dolore sed et.</p>
-                                <a href="appointment.html" class="btn btn-dark py-3 px-5 me-3">Appointment</a>
+                                <a href="appointment.php" class="btn btn-dark py-3 px-5 me-3">Appointment</a>
                                 <a href="" class="btn btn-light py-3 px-5">Read More</a>
                             </div>
                         </div>
@@ -349,7 +335,7 @@
                                             <div class="d-flex justify-content-between mb-3"><span>Modern Equipment</span><i class="fa fa-check text-primary pt-1"></i></div>
                                             <div class="d-flex justify-content-between mb-3"><span>Professional Dentist</span><i class="fa fa-check text-primary pt-1"></i></div>
                                             <div class="d-flex justify-content-between mb-2"><span>24/7 Call Support</span><i class="fa fa-check text-primary pt-1"></i></div>
-                                            <a href="appointment.html" class="btn btn-primary py-2 px-4 position-absolute top-100 start-50 translate-middle">Appointment</a>
+                                            <a href="appointment.php" class="btn btn-primary py-2 px-4 position-absolute top-100 start-50 translate-middle">Appointment</a>
                                         </div>
                                     </div>
 
@@ -396,7 +382,7 @@
                             <div class="section-title bg-light rounded h-100 p-5">
                                 <h5 class="position-relative d-inline-block text-primary text-uppercase">Our Dentist</h5>
                                 <h1 class="display-6 mb-4">Meet Our Certified & Experienced Dentist</h1>
-                                <a href="appointment.html" class="btn btn-primary py-3 px-5">Appointment</a>
+                                <a href="appointment.php" class="btn btn-primary py-3 px-5">Appointment</a>
                             </div>
                         </div>
                         <?php while ($doc_row = mysqli_fetch_assoc($doctor)) { ?>
@@ -450,7 +436,7 @@
 
             setTimeout(function() {
                 $(".credErr").remove();
-            }, 3000);
+            }, 2500);
 
         })
     </script>

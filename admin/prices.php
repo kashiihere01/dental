@@ -30,7 +30,7 @@ include_once ("./auth.php");
                 <div class="container mt-3 bg-white p-3">
                     <div class="row">
                     <div class="col-4">
-                        <h3 style="color: blue;"> <i class="fa fa-plus " style="color: blue;"></i> Add Services</h3>
+                        <h3 style="color: blue;"> <i class="fa fa-plus " style="color: blue;"></i> Add Prices</h3>
                     </div>
                     <div class="col-8">
                         <?php
@@ -108,7 +108,7 @@ include_once ("./auth.php");
   <!-- view categories container -->
   <div class="container mt-3 bg-white p-4">
 <div class="col-4">
-<h3 style="color: blue;"> <i class="fa fa-eye " style="color: blue;"></i> View Services</h3>
+<h3 style="color: blue;"> <i class="fa fa-eye " style="color: blue;"></i> View Prices</h3>
 </div>
 
    

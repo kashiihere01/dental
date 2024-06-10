@@ -72,6 +72,21 @@
 
                             <div class="col-lg-4 mb-2">
                                 <div class="form-group">
+                                    <label class="form-label" for="email" style="color: blue;">Start time <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="fas fa-clock"></i>
+                                            </div>
+                                        </div>
+                                        <input type="text" name="stime" class="form-control timepicker" required>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-4 mb-2">
+                                <div class="form-group">
                                     <label class="form-label" for="email" style="color: blue;">End time <span class="text-danger">*</span>
                                     </label>
                                     <div class="input-group">
@@ -81,21 +96,6 @@
                                             </div>
                                         </div>
                                         <input type="text" name="etime" class="form-control timepicker" required>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="col-lg-4 mb-2">
-                                <div class="form-group">
-                                    <label class="form-label" for="email" style="color: blue;">start time <span class="text-danger">*</span>
-                                    </label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="fas fa-clock"></i>
-                                            </div>
-                                        </div>
-                                        <input type="text" name="stime" class="form-control timepicker" required>
                                     </div>
                                 </div>
 
@@ -165,7 +165,7 @@
                                             <th>Slot start time</th>
                                             <th>Slot End Time</th>
                                             <th>Doctor name</th>
-                                            <th>Status</th>
+                                         
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -193,25 +193,13 @@ ON slots.doctor_id = doctors.id";
                                                     <td><?= $row['slot_end_time'] ?></td>
 
                                                     <td><?= $row['doctor_name'] ?></td>
-                                                    <td>
-                                                        <?php
-                                                        if ($row['slot_status'] == 1) {
-                                                            echo "<span class='badge bg-success text-white'>Available</span>";
-                                                        } else if ($row['slot_status'] == 0) {
-                                                            echo "<span class='badge badge-danger text-white'>unavailable</span>";
-                                                        }
-
-
-                                                        ?></td>
-                                                    <td>
+                                               <td>
                                                         <div class="dropdown">
                                                             <button type="button" class="btn btn-success text-white dropdown-toggle" data-toggle="dropdown">Actions</button>
                                                             <div class="dropdown-menu">
                                                                 <a class="dropdown-item" href="slot-edit.php?id=<?= $row['id'] ?>"> <i class="fas fa-user-edit"></i> Edit</a>
-                                                                <a class="dropdown-item" href="delete.php?id=<?= $row['id'] ?>"><i class="fas fa-trash"></i> Delete</a>
-                                                                <a class="dropdown-item" href="available.php?id=<?= $row['id'] ?>"><i class="fas fa-flag text-success"></i> Available</a>
-
-                                                                <a class="dropdown-item" href="unavailable?id=<?= $row['id'] ?>"><i class="fas fa-flag text-danger"></i> Unavailable</a>
+                                                                <a class="dropdown-item" href="slot-delete-qry.php?id=<?= $row['id'] ?>"><i class="fas fa-trash"></i> Delete</a>
+                                                             
                                                             </div>
                                                         </div>
                                                     </td>

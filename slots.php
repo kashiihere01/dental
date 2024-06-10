@@ -36,23 +36,7 @@ include_once("./auth.php")
     <!-- Navbar End -->
 
 
-    <!-- Full Screen Search Start -->
-    <div class="modal fade" id="searchModal top" tabindex="-1">
-        <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content" style="background: rgba(9, 30, 62, .7);">
-                <div class="modal-header border-0">
-                    <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body d-flex align-items-center justify-content-center">
-                    <div class="input-group" style="max-width: 600px;">
-                        <input type="text" class="form-control bg-transparent border-primary p-3" placeholder="Type search keyword">
-                        <button class="btn btn-primary px-4"><i class="bi bi-search"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Full Screen Search End -->
+
     <?php
 
     require_once("./includes/db-con.php");
@@ -72,7 +56,7 @@ include_once("./auth.php")
 
 
             <!-- Hero Start -->
-            <div class="container-fluid bg-primary py-5 hero-header mb-5">
+            <div class="container-fluid bg-primary py-5 hero-header mb-5" id="top">
                 <div class="row py-3">
                     <div class="col-12 text-center">
                         <h1 class="display-3 text-white animated zoomIn"><?= $doc_row['doctor_name'] ?></h1>

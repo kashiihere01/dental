@@ -1,3 +1,8 @@
+<?php
+ session_start();
+ 
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -96,7 +101,7 @@
 if (!empty($_SESSION['success'])) {
     $msg = $_SESSION['success'];
     echo  " 
-    <div class='alert alert-success alert-dismissible fade show' role='alert'>
+    <div class='alert alert-success alert-dismissible fade show credErr' role='alert'>
   <strong>Congratulation!</strong> $msg
   <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
 </div>";
@@ -107,7 +112,7 @@ unset($_SESSION['success']);
 if (!empty($_SESSION['error'])) {
     $msg = $_SESSION['error'];
     echo " 
-    <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+    <div class='alert alert-danger alert-dismissible fade  show credErr'  role='alert'>
   <strong>Warning!</strong> $msg
   <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
 </div>"
@@ -117,7 +122,7 @@ unset($_SESSION['error']);
 
 if (!empty($_SESSION['imgErr'])) {
     $msg = $_SESSION['imgErr'];
-    echo "   <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+    echo "   <div class='alert alert-danger alert-dismissible fade show' credErr role='alert'>
   <strong>Warning!</strong> $msg
   <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
 </div>";
